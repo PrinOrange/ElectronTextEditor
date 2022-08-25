@@ -348,21 +348,6 @@ export default class MenuBuilder {
       ],
     };
 
-    const RunMenu: MenuItemConstructorOptions = {
-      label: '&Run',
-      submenu: [
-        {
-          label: '&Start',
-          accelerator: 'Ctrl+O',
-          click: () => {},
-        },
-        {
-          label: '&Build',
-          accelerator: 'Ctrl+W',
-        },
-      ],
-    };
-
     const ViewMenu: MenuItemConstructorOptions = {
       label: '&View',
       submenu: [
@@ -389,35 +374,11 @@ export default class MenuBuilder {
       label: 'Help',
       submenu: [
         {
-          label: 'Github',
-          click() {
-            shell.openExternal('https://github.com/carbonscript/');
-          },
-        },
-        {
-          label: 'Documentation',
-          click() {
-            shell.openExternal('https://carbonscript.github.io');
-          },
-        },
-        {
-          label: 'Community Discussions',
-          click() {
-            shell.openExternal('https://github.com/carbonscript/');
-          },
-        },
-        {
           label: 'About',
           click() {
-            const message = `A cross-platform code editors and integrated development environments for carbon script. Based on some open source projects monaco-editor and vscode. This project is developed by Yuteng Zhang. And it can be used as Coursework
-
-            Carbland Version: 1.0.0
-            Complier Version: 0.2.0
-
-            Powered by Electron & React
-            `;
+            const message = `A cross-platform text editor based on React + Electron + MonacoEditor Example`;
             dialog.showMessageBox({
-              title: 'About Carbland',
+              title: 'About',
               message: message,
               buttons: ['Close'],
               type: 'info',
@@ -454,7 +415,7 @@ export default class MenuBuilder {
       ],
     };
 
-    const DefaultTemplate = [FileMenu, EditMenu, RunMenu, ViewMenu, HelpMenu];
+    const DefaultTemplate = [FileMenu, EditMenu, ViewMenu, HelpMenu];
 
     if (IS_DEBUG_MODE) {
       DefaultTemplate.push(_DevMenu);

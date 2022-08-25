@@ -1,17 +1,7 @@
 export enum RendererChannels {
   ICP_EXAMPLE = 'icp-example',
-  /**
-   * Open a file in application and transmit file contents
-   * into code editor
-   */
   OPEN_FILE = 'open-file',
-  /**
-   * Fetch the code content in code-editor
-   */
   FETCH_CODE = 'fetch-code',
-  /**
-   * Save the code content that in code-editor into file 
-   */
   FIRST_SAVE_FILE = 'save-file',
   //
   SAVE_AS_FILE = 'save-as-file',
