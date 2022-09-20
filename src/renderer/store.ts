@@ -17,7 +17,6 @@ export const store = configureStore({
       },
     }),
   reducer: {
-    
     codeEditor: CodeEditorSlice,
     fileWork: FileWorkSlice,
   },
