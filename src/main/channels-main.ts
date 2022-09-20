@@ -10,3 +10,21 @@ export enum MainChannels {
   UPDATE_SAVED_FILE = 'write-in-file',
   RETURN_SAVED_FILE_PATH = 'get-opened-file-path',
 }
+
+type ChannelICPExample = 'icp-example';
+
+type CodeEditorContentWork = `code-editor:${'fetch' | 'set' | 'clean'}`;
+type CodeMapWork = `codemap:${'show' | 'hidden'}`;
+type FileWork = `file:${'write-in' | 'mount' | 'load-r' | 'load-wr'}`;
+type NotificationWork = `notification:${'error' | 'info' | 'warning'}`;
+
+type ChannelsMain = `${
+  | ChannelICPExample
+  | CodeEditorContentWork
+  | CodeMapWork
+  | FileWork
+  | NotificationWork}`;
+
+type ChannelsReply = `${ChannelsMain}::reply`;
+
+export { ChannelsMain, ChannelsReply };
