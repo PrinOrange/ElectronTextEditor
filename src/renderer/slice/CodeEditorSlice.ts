@@ -39,21 +39,6 @@ const initialState: CodeEditorState = {
   editorOptions: undefined,
 };
 
-// Default options for editor
-// For more options, documentation is here
-// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IStandaloneEditorConstructionOptions.html
-export const defaultEditorOption: editor.IStandaloneEditorConstructionOptions =
-  {
-    scrollBeyondLastLine: false,
-    automaticLayout: true,
-    theme: 'vs-dark',
-    minimap: {
-      enabled: true,
-    },
-    value: '',
-    fontFamily: 'consolas,Microsoft YaHei',
-  };
-
 // Create the editor slice.
 export const CodeEditorSlice = createSlice({
   name: 'codeEditor',
@@ -95,7 +80,7 @@ export const CodeEditorSlice = createSlice({
 export const { initEditor, destroyEditor } = CodeEditorSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const codeEditorSelectEditor = (state: RootState) => {
+export const codeEditorSelectInstance = (state: RootState) => {
   return state.codeEditor.editorInstance;
 };
 

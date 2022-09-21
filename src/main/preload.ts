@@ -1,4 +1,8 @@
-import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
+import {
+  contextBridge,
+  ipcRenderer,
+  IpcRendererEvent
+} from 'electron';
 import { ChannelsMain } from './channels-main';
 
 contextBridge.exposeInMainWorld('electron', {

@@ -1,8 +1,7 @@
 import fs from 'fs';
 import { BrowserWindow, dialog } from 'electron';
 import { menuState } from './menu';
-import { MainChannels } from './channels-main';
-
+import { ChannelsMain } from './channels-main';
 /**
  * menu-trigger.ts
  * Here is used to define the window menu trigger.
@@ -23,7 +22,7 @@ export const menuTriggeredOpenFile = (window: BrowserWindow) => {
     })
     .then((data) => {
       fs.readFile(data.filePaths[0], 'utf-8', (_err, content) => {
-        window.webContents.send(MainChannels.OPEN_FILE, {
+        window.webContents.send('file:load-wr' as ChannelsMain, {
           content: content,
           filepath: data.filePaths[0],
         });
@@ -48,7 +47,7 @@ export const menuTriggeredNewFile = (_window: BrowserWindow) => {};
  * @param window Allows the dialog to attach itself to a parent window, making it modal.
  */
 export const menuTriggeredSaveFile = (window: BrowserWindow) => {
-  window.webContents.send(MainChannels.FETCH_CODE_TO_SAVE);
+  window.webContents.send('file:mount' as ChannelsMain);
 };
 
 /**
@@ -56,7 +55,7 @@ export const menuTriggeredSaveFile = (window: BrowserWindow) => {
  * @param window Allows the dialog to attach itself to a parent window, making it modal.
  */
 export const menuTriggeredSaveAsFile = (window: BrowserWindow) => {
-  window.webContents.send(MainChannels.FETCH_CODE_TO_SAVE_AS);
+  window.webContents.send('file:save-as' as ChannelsMain);
 };
 
 /**
@@ -65,5 +64,8 @@ export const menuTriggeredSaveAsFile = (window: BrowserWindow) => {
  */
 export const menuTriggeredSetCodemap = (window: BrowserWindow) => {
   menuState.checkedCodeMap = !menuState.checkedCodeMap;
-  window.webContents.send(MainChannels.SET_CODEMAP, menuState.checkedCodeMap);
+  window.webContents.send(
+    'codemap:set' as ChannelsMain,
+    menuState.checkedCodeMap
+  );
 };
