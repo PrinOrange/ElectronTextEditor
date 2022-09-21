@@ -1,5 +1,5 @@
 import { editor } from 'monaco-editor';
-import { MountedFile } from 'renderer/declare/file-model';
+import { MountedFile } from 'renderer/types/file-model';
 import { useAppDispatch, useAppSelector } from 'renderer/hook/redux-hooks';
 import { useEffect, useRef } from 'react';
 import {

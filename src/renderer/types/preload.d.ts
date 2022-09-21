@@ -1,4 +1,4 @@
-import { ChannelsRerender } from "./channels-renderer";
+import { ChannelsRerender } from "../channels-renderer";
 
 declare global {
   interface Window {
