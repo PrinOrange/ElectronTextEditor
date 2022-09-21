@@ -1,16 +1,16 @@
 import fs from 'fs';
-import { ChannelsMain } from './channels-main';
+import { ChannelsMain } from '../channels-main';
 import { dialog, ipcMain } from 'electron';
-import { mainWindow } from './main';
+import { mainWindow } from '../main';
 
 /**
- * The listener used to register the icp main process.
+ * The listener used to register the ipc main process.
  * Note that this function can only be called when the app is ready to start and only once.
  * Otherwise, it will cause repeated listening.
  *
  * @export
  */
-export function RegistryICPListener() {
+export function StartFileIpcListeners() {
 
   /**
    * Listen the action of saving the file for the first time.

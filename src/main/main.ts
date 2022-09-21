@@ -1,10 +1,10 @@
 import log from 'electron-log';
-import MenuBuilder from './menu';
+import MenuBuilder from './window/menu';
 import path from 'path';
 import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import { resolveHtmlPath } from './util';
-import { RegistryICPListener } from './ipc-listeners';
+import { StartFileIpcListeners } from './ipc/file-ipc';
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -155,6 +155,6 @@ app
       if (mainWindow === null) createWindow();
       console.log('The process is startup...');
     });
-    RegistryICPListener();
+    StartFileIpcListeners();
   })
   .catch(console.log);

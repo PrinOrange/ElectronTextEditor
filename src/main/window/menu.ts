@@ -6,11 +6,7 @@ import {
   MenuItemConstructorOptions,
   shell,
 } from 'electron';
-import {
-  menuTriggeredOpenFile,
-  menuTriggeredSaveFile,
-  menuTriggeredSetCodemap,
-} from './menu-triggers';
+import { WindowMenuTrigger } from './menu-triggers';
 
 /**
  * This module is used to build the window menu based on the provided menu template.
@@ -259,7 +255,7 @@ export default class MenuBuilder {
           label: '&Open Project',
           accelerator: 'Ctrl+O',
           click: () => {
-            menuTriggeredOpenFile(this.mainWindow);
+            WindowMenuTrigger.openFile(this.mainWindow);
           },
         },
         {
@@ -273,7 +269,7 @@ export default class MenuBuilder {
           label: 'Save Project',
           accelerator: 'Ctrl+S',
           click: () => {
-            menuTriggeredSaveFile(this.mainWindow);
+            WindowMenuTrigger.saveFile(this.mainWindow);
           },
         },
         {
@@ -357,7 +353,7 @@ export default class MenuBuilder {
           type: 'checkbox',
           checked: menuState.checkedCodeMap,
           click: () => {
-            menuTriggeredSetCodemap(this.mainWindow);
+            WindowMenuTrigger.setCodemap(this.mainWindow);
           },
         },
         {
