@@ -7,15 +7,15 @@ import {
   codeEditorSelectInstance,
 } from 'renderer/slice/CodeEditorSlice';
 import {
-  fileWorkSelectIsFileSaved,
+  fileWorkSelectIsFileMounted,
   fileWorkSelectMountedFilePath,
-  setIsSaved,
+  setIsMounted,
   setMountedFilePath,
 } from 'renderer/slice/FileWorkSlice';
 
 // Default options for editor
 // For more options, documentation is here
-// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IStandaloneEditorConstructionOptions.html
+// https://microsoft.github.io/monaco-editor/api/interfaces
 export const defaultEditorOption: editor.IStandaloneEditorConstructionOptions =
   {
     scrollBeyondLastLine: false,
@@ -60,7 +60,7 @@ const CodeEditor = () => {
   const selectEditorInstance = useAppSelector(codeEditorSelectInstance);
 
   // Hooks the saved state from workflow state
-  const selectIsSaved = useAppSelector(fileWorkSelectIsFileSaved);
+  const selectIsSaved = useAppSelector(fileWorkSelectIsFileMounted);
 
   // Hooks the saved path from workflow state.
   const selectMountedFilePath = useAppSelector(fileWorkSelectMountedFilePath);
@@ -90,7 +90,7 @@ const CodeEditor = () => {
      * stream the string into the editor.
      */
     window.electron.ipcRenderer.on('file:load-wr', (data: MountedFile) => {
-      dispatcher(setIsSaved(true));
+      dispatcher(setIsMounted(true));
       dispatcher(setMountedFilePath(data.filepath));
       selectEditorInstance?.setValue(data.content);
     });
@@ -119,7 +119,7 @@ const CodeEditor = () => {
         window.electron.ipcRenderer.once(
           'file:mount::reply',
           (filepath: string) => {
-            dispatcher(setIsSaved(true));
+            dispatcher(setIsMounted(true));
             dispatcher(setMountedFilePath(filepath));
           }
         );

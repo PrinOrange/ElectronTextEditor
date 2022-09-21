@@ -14,7 +14,7 @@ export interface SetFilePathAction {
 }
 
 // Action for setting file saving state
-export interface SetFileSaveAction {
+export interface SetFileMountedAction {
   type: string;
   payload: boolean;
 }
@@ -48,9 +48,9 @@ export const FileWorkSlice = createSlice({
      * @param action The dispatched action
      * @returns Returned new state
      */
-    setIsSaved: (
+    setIsMounted: (
       state: FileWorkState,
-      action: SetFileSaveAction
+      action: SetFileMountedAction
     ): FileWorkState => {
       return { ...state, isSaved: action.payload };
     },
@@ -60,7 +60,7 @@ export const FileWorkSlice = createSlice({
 /**
  * Export actions in FileWorkSlice.
  */
-export const { setMountedFilePath, setIsSaved } = FileWorkSlice.actions;
+export const { setMountedFilePath, setIsMounted } = FileWorkSlice.actions;
 
 /**
  * Select the path of the opened file.
@@ -76,7 +76,7 @@ export const fileWorkSelectMountedFilePath = (state: RootState) => {
  * @param state The Root state in redux
  * @returns
  */
-export const fileWorkSelectIsFileSaved = (state: RootState) => {
+export const fileWorkSelectIsFileMounted = (state: RootState) => {
   return state.fileWork.isSaved;
 };
 
